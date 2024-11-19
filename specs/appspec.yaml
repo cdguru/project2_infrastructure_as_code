@@ -1,0 +1,9 @@
+version: 0.0
+Resources:
+  - myLambdaFunction:
+      Type: AWS::Lambda::Function
+      Properties:
+        Name: "CHANGE_NAME"
+        Alias: "CHANGE_NAME"
+        CurrentVersion: "CHANGE_CURRENT_VERSION"
+        TargetVersion: "CHANGE_TARGET_VERSION"

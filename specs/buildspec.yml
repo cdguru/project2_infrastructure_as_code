@@ -1,0 +1,21 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  build:
+    commands:
+      - echo "Building Lambda package..."
+      - cp $CODEBUILD_SRC_DIR_source_output/python/lambda_function.py .
+      - zip -r lambda.zip lambda_function.py
+  post_build:
+    commands:
+      - echo "Publishing new version of Lambda function..."
+      - bash update-lambda.sh $LAMBDA_FUNCTION_NAME
+      - |
+        cat appspec.yaml
+        echo "Build completed"
+        
+artifacts:
+  files:
+    - appspec.yaml
